@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+  * {
+    box-sizing: border-box;
+  }
+
+  .row::after {
+    content: "";
+    clear: both;
+    display: block;
+  }
+
+  [class*="col-"] {
+    float: left;
+    padding: 15px;
+  }
+
+
+html {
+  font-family: "Lucida Sans", sans-serif;
+}
+
+  body {
+    background: #4f4e4e;
+  }
+
+
+  .movie-grid {
+    padding: 8px;
+    margin: 10px;
+    background-color: #212121;
+    color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    width: 200px;
+    height: 350px;
+    display:inline-block;
+    position: relative;
+  }
+
+  .movie-title {
+    width: 100%;
+    padding-top: 25px;
+    height: 30%;
+    text-align: center;
+    font-size: 10px;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+  }
+
+  .movie-grid:hover {
+    background-color: #6b6969;
+  }
+
+
+
+
+  .movie-page {width: 100%;padding-left: 5%;padding-right: 5%;}
+
+
+  </style>
+  </head>
+  <body>
+
+  <div class="row">
+    <div class="movie-page" id="movie-content"></div>
+  </div>
+
+  </body>
+</html>
+<script type="text/javascript">
+
+function details()
+{
+  alert("details");
+}
+
+var j ;
+var moviename = localStorage.getItem('search');
+var myData = localStorage.getItem('page');
+var url = 'http://www.omdbapi.com/?s='+ moviename +'&apikey=67afe71e&page='+myData;
+console.log(url);
+fetch(url).then(response => {
+return response.json();
+}).then(data => {
+console.log("data",data);
+// alert(data.Response)
+if(data.Response == "True" ){
+  j = 1;
+}
+if(data.Response == "False" && j == 1){
+  alert("ALL THE RELATED MOVIES ARE ALREADY LISTED . PLEASE SELECT ONE OF THEM !!!")
+}
+else if(data.Response == "False"){
+  alert("NO MOVIES AVAILABLE WITH THIS NAME . PLEASE TRY SOMETHING ELSE !!!")
+  window.location.href = "index.html";
+}
+// alert("wait")
+e1=document.getElementById("movie-content");
+for( var i=0;i<10;i++){
+var d1 = document.createElement("div");
+d1.setAttribute("class","movie-grid");
+d1.setAttribute("onClick",'localStorage.setItem("moviename","'+data.Search[i].Title+'");window.location.href = "MovieDetails.html"');
+var i1 = document.createElement("img");
+i1.setAttribute("height","70%");
+i1.setAttribute("width","100%");
+i1.setAttribute("src",data.Search[i].Poster);
+var d2 = document.createElement("p");
+ d2.setAttribute("class","movie-title");
+ var t1 = document.createTextNode(data.Search[i].Title);
+ d2.appendChild(t1);
+ d1.appendChild(i1);
+ d1.appendChild(d2);
+ e1.append(d1);
+}
+ console.log(t1);
+// var i;
+// for(i = 0; i < 10 ; i++ ){
+// var d1 = document.createElement("div");
+// d1.setAttribute("class","movie-grid");
+// var i1 = document.createElement("img");
+// i1.setAttribute("height","80%");
+// i1.setAttribute("width","100%");
+// i1.setAttribute("src","https://img.spicinemas.in/resources/images/movies/aaviri-telugu/150x207.jpg");
+// var d2 = document.createElement("div");
+// d2.setAttribute("class",data.Search[i].Title);
+// var t1 = document.createTextNode("new movie");
+// d2.appendChild(t1);
+// d1.appendChild(i1);
+// d1.appendChild(d2);
+//
+// var element = document.getElementById("movie-content");
+// element.appendChild(d1);
+// }
+$.ajax({
+// type: 'POST',
+// url: 'BBCnews.php',
+// data: {json: json},
+// dataType: 'text',
+success:function(html)
+{
+  console.log("hello");
+}
+})
+.done( function( data ) {
+console.log('done');
+})
+.fail( function( data ) {
+console.log('fail');
+console.log(data);
+});
+}).catch(err => {
+// Do something for an error here
+});
+
+// function createElement()
+// {
+  // var element = document.getElementById("1")
+  // element.appendChild("<p>hello1</p>")
+// }
+
+
+</script>

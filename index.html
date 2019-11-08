@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+    <script type="text/javascript">
+
+      function doit_onkeypress(event)
+      {
+        if (event.keyCode == 13 || event.which == 13)
+        {
+           searchfun();
+        }
+      }
+
+
+      function searchfun()
+      {
+        var search=document.getElementById("search").value;
+        localStorage.setItem("search", search);
+        window.location.href = "MovieWiki.html";
+      }
+    </script>
+
+    <div class="header">
+      <div>
+        <center><h1>MovieWiKi</h1></center>
+        <div class="form-box">
+          <input type="text" value=""  onkeypress="javascript:doit_onkeypress(event);" class="search-field" id="search" placeholder="Search for Movies">
+          <button onclick="searchfun()" class="search-btn">Search</button>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

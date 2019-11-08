@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      .poster{
+        padding:5%;
+        float:left;
+        width:33%;
+      }
+      .poster-detials{
+        float: left;
+        width: 40%;
+        padding-top: 100px;
+      }
+      body{
+        background:#474746;
+      }
+      ul{
+        list-style-type: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="poster-info">
+      <div class="poster">
+          <img height="50%" width="100%" id="poster-id" src="" />
+      </div>
+      <div class="poster-detials">
+        <ul>
+          <li>
+              <label for="title"><b>Title:</b></label>
+              <p id="title"></p>
+          </li>
+          <li>
+              <label for="actors"><b>Actors:</b></label>
+              <p id="actors"></p>
+          </li>
+          <li>
+              <label for="language"><b>Language:</b></label>
+              <p id="language"></p>
+          </li>
+          <li>
+              <label for="director"><b>Director:</b></label>
+              <p id="director"></p>
+          </li>
+          <li>
+              <label for="genre"><b>Genre:</b></label>
+              <p id="genre"></p>
+          </li>
+          <li>
+              <label for="plot"><b>Plot:</b></label>
+              <p id="plot"></p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
+<script type="text/javascript">
+
+var moviedetails = localStorage.getItem('moviename');
+var url = 'http://www.omdbapi.com/?t='+ moviedetails +'&apikey=67afe71e&plot=full';
+console.log(url);
+fetch(url).then(response => {
+return response.json();
+}).then(data => {
+console.log("data",data);
+document.getElementById("title").innerHTML=data.Title;
+document.getElementById("actors").innerHTML=data.Actors;
+document.getElementById("language").innerHTML=data.Language;
+document.getElementById("director").innerHTML=data.Director;
+document.getElementById("genre").innerHTML=data.Genre;
+document.getElementById("plot").innerHTML=data.Plot;
+var a = document.getElementById("poster-id")
+a.setAttribute("src",data.Poster)
+$.ajax({
+// type: 'POST',
+// url: 'BBCnews.php',
+// data: {json: json},
+// dataType: 'text',
+success:function(html)
+{
+  console.log("hello");
+}
+})
+.done( function( data ) {
+console.log('done');
+})
+.fail( function( data ) {
+console.log('fail');
+console.log(data);
+});
+}).catch(err => {
+// Do something for an error here
+});
+
+</script>
