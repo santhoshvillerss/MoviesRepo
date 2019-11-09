@@ -4,6 +4,7 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta charset="utf-8">
     <title></title>
+
     <style media="screen">
       .fixed {
         position: fixed;
@@ -15,40 +16,37 @@
         background:#81827f;
       }
     </style>
+
   </head>
   <body>
-    <span id="availability"></span>
-    <!-- <span id="availability1"></span> -->
-      <button type="button" class="fixed" onclick="fun()" name="button"><b>LOAD MORE</b></button>
-
+    <span id="rendering_data"></span>
+    <button type="button" class="fixed" onclick="fun()" name="button"><b>LOAD MORE</b></button>
   </body>
 </html>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <script type="text/javascript">
   var pagination_number = 1;
   localStorage.setItem("pagination_number", pagination_number);
   $.ajax({
-//  type: 'POST',
-  url: 'page.html',
+  url: 'Movie_API_request_page.html',
   dataType: 'text',
-//  cache:false,
   success:function(html)
   {
-    $('#availability').html(html);
+    $('#rendering_data').html(html);
   }
   })
 
   function fun()
   {
-    a++;
-    localStorage.setItem("page", a);
+    pagination_number++;
+    localStorage.setItem("pagination_number", pagination_number);
     $.ajax({
-    type: 'POST',
-    url: 'page.html',
+    url: 'Movie_API_request_page.html',
     dataType: 'text',
     success:function(html)
     {
-      $('#availability').append(html);
+      $('#rendering_data').append(html);
     }
     })
   }

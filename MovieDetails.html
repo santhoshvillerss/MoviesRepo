@@ -4,6 +4,7 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta charset="utf-8">
     <title></title>
+
     <style media="screen">
       .poster{
         padding:5%;
@@ -22,7 +23,9 @@
         list-style-type: none;
       }
     </style>
+
   </head>
+
   <body>
     <div class="poster-info">
       <div class="poster">
@@ -59,10 +62,11 @@
     </div>
   </body>
 </html>
+
 <script type="text/javascript">
 
 var moviedetails = localStorage.getItem('moviename');
-var url = 'http://www.omdbapi.com/?t='+ moviedetails +'&apikey=67afe71e&plot=full';
+var url = 'https://www.omdbapi.com/?t='+ moviedetails +'&apikey=67afe71e&plot=full';
 console.log(url);
 fetch(url).then(response => {
 return response.json();
@@ -77,10 +81,6 @@ document.getElementById("plot").innerHTML=data.Plot;
 var a = document.getElementById("poster-id")
 a.setAttribute("src",data.Poster)
 $.ajax({
-// type: 'POST',
-// url: 'BBCnews.php',
-// data: {json: json},
-// dataType: 'text',
 success:function(html)
 {
   console.log("hello");
@@ -94,7 +94,6 @@ console.log('fail');
 console.log(data);
 });
 }).catch(err => {
-// Do something for an error here
 });
 
 </script>
