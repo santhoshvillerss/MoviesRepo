@@ -3,30 +3,10 @@
   <head>
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta charset="utf-8">
-    <title></title>
+    <title>MovieSearchPAge</title>
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-
-    <script type="text/javascript">
-
-      function doit_onkeypress(event)
-      {
-        if (event.keyCode == 13 || event.which == 13)
-        {
-           searchfun();
-        }
-      }
-
-
-      function searchfun()
-      {
-        var search=document.getElementById("search").value;
-        localStorage.setItem("search", search);
-        window.location.href = "MovieWiki.html";
-      }
-    </script>
-
     <div class="header">
       <div>
         <center><h1>MovieWiKi</h1></center>
@@ -36,6 +16,24 @@
         </div>
       </div>
     </div>
-
   </body>
 </html>
+
+<script type="text/javascript">
+
+  function doit_onkeypress(event)
+  {
+    if (event.keyCode == 13 || event.which == 13)
+    {
+       searchfun();
+    }
+  }
+
+  function searchfun()
+  {
+    var search=document.getElementById("search").value;
+    localStorage.setItem("search", search);
+    window.location.href = "MovieWiki.html";
+  }
+
+</script>

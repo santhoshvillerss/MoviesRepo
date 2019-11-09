@@ -86,8 +86,8 @@ function details()
 
 var j ;
 var moviename = localStorage.getItem('search');
-var myData = localStorage.getItem('page');
-var url = 'http://www.omdbapi.com/?s='+ moviename +'&apikey=67afe71e&page='+myData;
+var page_number = localStorage.getItem('pagination_number');
+var url = 'https://www.omdbapi.com/?s='+ moviename +'&apikey=67afe71e&page='+page_number;
 console.log(url);
 fetch(url).then(response => {
 return response.json();

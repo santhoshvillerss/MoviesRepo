@@ -18,15 +18,15 @@
   </head>
   <body>
     <span id="availability"></span>
-    <span id="availability1"></span>
+    <!-- <span id="availability1"></span> -->
       <button type="button" class="fixed" onclick="fun()" name="button"><b>LOAD MORE</b></button>
 
   </body>
 </html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <script type="text/javascript">
-  var a = 1;
-  localStorage.setItem("page", a);
+  var pagination_number = 1;
+  localStorage.setItem("pagination_number", pagination_number);
   $.ajax({
 //  type: 'POST',
   url: 'page.html',
